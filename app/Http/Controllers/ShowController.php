@@ -19,7 +19,7 @@ class ShowController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -69,7 +69,7 @@ class ShowController extends Controller
         ]);
 
         // dd($request);
-        
+
         $show = new Show;
 
         $show->category_id = $request->input('category_id');
@@ -92,6 +92,10 @@ class ShowController extends Controller
     public function show($id)
     {
         // Get DB Data for single item using item id
+        $show = Show::find($id);
+
+        // Return Show Page with DB Data
+        return view('shows.show')->with('show', $show);
     }
 
     /**

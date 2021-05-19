@@ -87,7 +87,7 @@ class ProfileController extends Controller
         $image->image = $imageName;
         $image->image_path = '/storage/'.$path;
         $image->profile_id = Auth::user()->profile->id;
-        
+
         $image->save();
 
         // Return redirect
@@ -131,12 +131,14 @@ class ProfileController extends Controller
     {
         // Validate Request
         $this->validate($request, [
-            'username' => 'required|string'
+            'username' => 'required|string',
+            'show_id' => 'integer|max:10'
         ]);
 
         $profile = Profile::find($id);
 
         $profile->username = $request->input('username');
+        $profile->show_id = $request->input('show_id');
 
         $profile->save();
 
@@ -151,6 +153,10 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Find Profile by ID
+        $profile = Profile::find($id);
+
+        // / Find Image by ID
+        $image = Image::find($id);
     }
 }

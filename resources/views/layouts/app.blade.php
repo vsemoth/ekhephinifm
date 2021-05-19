@@ -57,7 +57,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     @if(Auth::user()->status == 1)
-                                    <a class="dropdown-item" href="{{ route('audio.index') }}">
+                                    <a class="dropdown-item" href="{{ route('audiofiles.index') }}">
                                         {{ __('Audio') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('categories.index') }}">

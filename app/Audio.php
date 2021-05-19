@@ -12,4 +12,10 @@ class Audio extends Model
 		# code...
 		return $this->belongsTo('App\Show');
 	}
+
+	public function profile()
+	{
+		# code...
+		return $this->belongsToMany('App\Profile');
+	}
 }

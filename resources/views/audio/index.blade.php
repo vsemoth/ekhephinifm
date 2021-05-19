@@ -41,7 +41,7 @@
 			<ul>
 					@foreach($shows as $show)
 					@foreach($show->audio as $audio)
-				<li>{{ $show }}</li>
+				<li>{{ $show->presenter }}</li>
 				<li>{{ $audio }}</li>
 				<hr><br>
 					@endforeach

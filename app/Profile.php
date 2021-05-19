@@ -30,4 +30,10 @@ class Profile extends Model
         # code...
         $this->belongsTo('App\Show');
     }
+
+    public function audio()
+    {
+        # code...
+        return $this->belongsToMany('App\Audio');
+    }
 }

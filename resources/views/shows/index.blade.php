@@ -14,6 +14,7 @@
                             <tr>
                                 <td>Show Title:</td>
                                 <td>Presenter:</td>
+                                <td>Show Audio:</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -22,6 +23,7 @@
                             @if($show->presenter_id == $show->presenter->id)
                             <td>{{ $show->show_title }}</td>
                             <td>{{ $show->presenter['username'] }}</td>
+                            <td><a href="{{ route('shows.show',$show->id) }}">{{ $show->show_title }} Audio</a></td>
                             @endif
                         </tr>
                         @endforeach

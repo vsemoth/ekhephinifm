@@ -42,3 +42,5 @@ Route::get('audiofiles', 'AudioController@index')->name('audiofiles.index');
 Route::resource('/audiofiles', 'AudioController',['except' => ['index']]);
 
 Route::get('/play/{audio_slug}', ['uses' => 'PlayController@getSingle', 'as' => 'play.single'])->where('audio_slug', '[\w\d\-\_]+');
+
+Route::get('/play', ['uses' => 'PlayController@getIndex', 'as' => 'play.index']);
