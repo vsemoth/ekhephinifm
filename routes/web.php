@@ -13,15 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'VisitorController@index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('profiles', 'ProfileController');
+
+Route::resource('visitors', 'VisitorController', ['except' => ['update','edit','create','show','index']]);
+
+Route::resource('userprofiles', 'ProfilesController');
 
 Route::resource('admin/profiles', 'ProfilesController');
 

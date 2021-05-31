@@ -92,7 +92,7 @@ class AudioController extends Controller
 
         $audio->presenter_id = $request->input('presenter_id');
         $audio->show_id = $request->input('show_id');
-        $audio->audio_title = $audioName;
+        $audio->audio_title = $name;
         $audio->audio_slug = $audioName;
 
         $audio->save();

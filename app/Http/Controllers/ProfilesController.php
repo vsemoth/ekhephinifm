@@ -131,16 +131,17 @@ class ProfilesController extends Controller
     {
         // Validate Request
         $this->validate($request, [
-            'username' => 'required|string'
+            'audio_id' => 'required|integer',
+            'audio_slug' => 'required|string',
         ]);
 
         $profile = Profile::find($id);
 
-        $profile->username = $request->input('username');
+        $profile->audio_id = $request->input('audio_id');
 
         $profile->save();
 
-        return back()->with('success', 'Username updated successfully');
+        return redirect()->route('play.single', $request->input('audio_slug'))->with('success', 'User profile has been updated!');
     }
 
     /**

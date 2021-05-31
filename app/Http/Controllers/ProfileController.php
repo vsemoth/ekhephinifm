@@ -70,11 +70,37 @@ class ProfileController extends Controller
 
         $profile = new Profile;
 
-        if ($request->file('image')) {
           $imagePath = $request->file('image');
-          $imageName = $imagePath->getClientOriginalName();
+          $name = $imagePath->getClientOriginalName();
+          $ext = $imagePath->getClientOriginalExtension();
+          dd($ext);
+        if ($request->file('image')) {
 
-          $path = $request->file('image')->storeAs('uploads/images', $imageName, 'public');
+          // replace non letter or digits by divider
+          $name = preg_replace('~[^\pL\d]+~u', $divider, $name);
+
+          // transliterate
+          $name = iconv('utf-8', 'us-ascii//TRANSLIT', $name);
+
+          // remove unwanted characters
+          $name = preg_replace('~[^-\w]+~', '', $name);
+
+          // trim
+          $name = trim($name, $divider);
+
+          // remove duplicate divider
+          $name = preg_replace('~-+~', $divider, $name);
+
+          // lowercase
+          $imageName = strtolower($name);
+
+          if (empty($imageName)) {
+            return 'n-a';
+          }
+
+          /*return $name;*/
+
+          $path = $request->file('image')->storeAs('uploads/images', $imageName . '.' . $ext, 'public');
         }
 
         // Write to Profile

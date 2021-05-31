@@ -22,7 +22,17 @@
 						<tr>
 							<td>{{ $audio->show->show_title }}</td>
 							<td>{{ $audio->show->presenter->username }}</td>
-							<td><a class="btn btn-primary w-100" href="{{ route('play.single', $audio->audio_slug) }}">{{ $audio->audio_title }}</a></td>
+							<td>
+								<form action="{{ route('userprofiles.update',$audio->show->presenter->profile->id) }}" method="post">
+									@csrf
+									<input type="hidden" name="audio_id" value="{{ $audio->id }}">
+									<input type="hidden" name="audio_slug" value="{{ $audio->audio_slug }}">
+									<input type="submit" class="btn btn-primary btn-block" value="{{ $audio->audio_title }}">
+									@method('PUT')
+								</form>
+							</td>
+							<td>{{ $audio->show->presenter->id }}</td>
+							<td>{{ $audio->audio_slug }}</td>
 						</tr>
 						@endforeach
 					</tbody>
